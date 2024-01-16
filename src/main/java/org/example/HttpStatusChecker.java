@@ -22,17 +22,6 @@ public class HttpStatusChecker {
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-
-//        try {
-//            if(response.statusCode()!= CODE_200){
-//                throw new CodeNotFoundException("Uncorrect code");
-//            }
-//            String result = String.valueOf(response.uri());
-//            return result;
-//
-//        }catch (CodeNotFoundException ex){
-//            System.out.println(ex.getMessage());
-//        }
         if(response.statusCode()!= CODE_200){
             System.out.println(new CodeNotFoundException("Uncorrect code").getMessage());
             System.exit(0);
