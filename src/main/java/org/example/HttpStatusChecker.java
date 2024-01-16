@@ -22,16 +22,13 @@ public class HttpStatusChecker {
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-        if (response.statusCode() == CODE_200){
-            String result = String.valueOf(response.uri());
-            return result;
-        }else{
-            try {
-                throw new CodeNotFoundException("Uncorrect code");
-            }catch (CodeNotFoundException ex){
-                System.out.println(ex.getMessage());
-            }
+        if (response.statusCode() != CODE_200){
+            System.out.println("Uncorrect code");
+            System.exit(0);
         }
-        return "";
+
+        String result = String.valueOf(response.uri());
+        return result;
+
     }
 }
