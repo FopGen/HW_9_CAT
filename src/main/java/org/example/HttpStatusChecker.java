@@ -9,7 +9,7 @@ import java.net.http.HttpResponse;
 
 public class HttpStatusChecker {
     private static final String URL_CAT = "https://http.cat/";
-    private static final int CODE_200 = 200;
+    private static final int CODE_404 = 404;
 
     public static String getStatusImage(int code) throws URISyntaxException, CodeNotFoundException, InterruptedException, IOException {
 
@@ -22,9 +22,8 @@ public class HttpStatusChecker {
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-        if(response.statusCode()!= CODE_200){
-            System.out.println(new CodeNotFoundException("Uncorrect code").getMessage());
-            System.exit(0);
+        if(response.statusCode()== CODE_404){
+            throw new CodeNotFoundException("There is not image for HTTP status ");
         }
 
         String result = String.valueOf(response.uri());

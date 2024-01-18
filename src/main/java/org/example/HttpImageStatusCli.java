@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class HttpImageStatusCli {
 
-    static void askStatus() throws CodeNotFoundException, URISyntaxException, IOException, InterruptedException {
+    static void askStatus() throws URISyntaxException, IOException, InterruptedException {
 
         Scanner console = new Scanner(System.in);
 
@@ -18,7 +18,7 @@ public class HttpImageStatusCli {
             try {
                 HttpStatusImageDownloader.downloadStatusImage(inputCode);
             }catch(CodeNotFoundException ex){
-                System.out.println("There is not image for HTTP status "+ inputCode);
+                System.out.println(ex.getMessage() + inputCode);
             }
 
         }else{
